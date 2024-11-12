@@ -29,7 +29,14 @@ if(isset($_COOKIE['user_id'])){
     <link rel="stylesheet" href="css/university.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+    <script>
+      // Check if user is logged in
+      var userId = "<?php echo $user_id; ?>";
+      if (!userId) {
+         // User is not logged in, show popup
+         alert("You need to login first!");
+      }
+   </script>
 </head>
 <body>
     <!----header-------->
