@@ -214,17 +214,22 @@ if(isset($_POST['post'])){
 
 </section>
 
-
-
-
-
-
-
 <!----footer---->
 <?php include '../components/footer.php'; ?>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+function validateDistance() {
+   var distance = document.getElementById('distance').value;
+   
+   if (distance > 3) {
+      alert('Distance must be 3 km or less from the university.');
+      return false; // Prevent form submission
+   }
 
+   return true; // Allow form submission
+}
+</script>
 <script src="../js/script.js"></script>
 <?php include '../components/message.php'; ?>
 </body>
