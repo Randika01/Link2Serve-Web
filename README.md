@@ -1,0 +1,1 @@
+This web application serve the university students in Sri lanka to find boarding places, jobs, courses, courier services and taxi services around their universities. Local communities can share their advertisements with the students. Students can chat and reserve the service through this application.
