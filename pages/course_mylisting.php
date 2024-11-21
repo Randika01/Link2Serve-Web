@@ -8,6 +8,36 @@ if(isset($_COOKIE['user_id'])){
    $user_id = '';
    header('location:login.php');
 }
+if(isset($_POST['delete'])){
+
+   $delete_id = $_POST['course_id'];
+   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+   $verify_delete = $conn->prepare("SELECT * FROM `course` WHERE id = ?");
+   $verify_delete->execute([$delete_id]);
+
+   if($verify_delete->rowCount() > 0){
+      $select_images = $conn->prepare("SELECT * FROM `course` WHERE id = ?");
+      $select_images->execute([$delete_id]);
+      while($fetch_images = $select_images->fetch(PDO::FETCH_ASSOC)){
+         $image_01 = $fetch_images['image_01'];
+        
+         unlink('../uploaded_files/'.$image_01);
+        
+      }
+    //   $delete_saved = $conn->prepare("DELETE FROM `saved` WHERE job_id = ?");
+    //   $delete_saved->execute([$delete_id]);
+    //   $delete_requests = $conn->prepare("DELETE FROM `requests` WHERE job_id = ?");
+    //   $delete_requests->execute([$delete_id]);
+      $delete_listing = $conn->prepare("DELETE FROM `course` WHERE id = ?");
+      $delete_listing->execute([$delete_id]);
+      $success_msg[] = 'listing deleted successfully!';
+   }else{
+      $warning_msg[] = 'listing deleted already!';
+   }
+
+}
+
 
 ?>
 
